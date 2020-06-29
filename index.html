@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+
+<body>
+
+<div id = "contenuti">
+
+</div>
+<script>
+
+function testJSON(){
+    var dati = $.getJSON("https://raw.githubusercontent.com/tekrar/datijson4github/master/datijson.json");
+	return dati;
+}
+
+
+$.when(testJSON()).then(function(jsondata){
+
+    var dati = jsondata; 
+	console.log(dati);
+	
+	var array = jsondata.locations; 
+	
+	for(var i = 0; i < array.length; i++){
+	
+	    console.log(array[i].country);
+		console.log(array[i].latest);
+		var country = array[i].country;
+		var d = array[i].latest;
+		
+		document.getElementById("contenuti").innerHTML += "<h3>"+country+"</h3> <h3>"+d+"</h3>";
+	}
+
+});
+
+</script>
+
+</body>
+
+</html>
+
+
